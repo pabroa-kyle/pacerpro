@@ -3,7 +3,7 @@ import { LoginPage } from '../pages/pacerpro'
 import { HomePage } from '../pages/HomePage'
 
 
-test('Navigate to Home and Click My Cases', async ({ page }) => {
+test('Navigate to Home and Click My Cases and All Cases', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const homePage = new HomePage(page);
 
@@ -11,4 +11,5 @@ test('Navigate to Home and Click My Cases', async ({ page }) => {
     await loginPage.SignUp('engineering.automation@pacerpro.com', 'QzQqMj123!');
     
     await homePage.clickMyCases();
+    await homePage.clickAllCases();
 });

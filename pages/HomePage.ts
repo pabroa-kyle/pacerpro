@@ -10,7 +10,7 @@ export class HomePage{
     constructor (page: Page){
         this.page = page;
         this.myCasesButton = page.locator('#content > article > div > header > div.css-uliqdc > div:nth-child(1) > a > svg')
-        this.allCasesButton = page.locator('#content > article > div > header > div.css-uliqdc > div:nth-child(2) > a > svg')
+        this.allCasesButton = page.locator('[data-test="allcases"]')
     }
 
 

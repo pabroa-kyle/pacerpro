@@ -7,7 +7,7 @@ export class LoginPage {
     private passwordTextbox;
     private nextButton;
     private doThisLaterButton;
-    private myCasesButton;
+    //private myCasesButton;
 
     constructor(page: Page) {
         this.page = page;
