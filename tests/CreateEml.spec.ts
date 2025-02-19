@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { EmlLoginPage } from '../pages/EmlLogin';
 import { NewElectronicMailPage } from '../pages/NewElectronicMailPage';
 
+
 test('should create a new electronic mail', async ({ page }) => {
   // Initialize the page objects
   const loginPage = new EmlLoginPage(page);
@@ -19,11 +20,11 @@ test('should create a new electronic mail', async ({ page }) => {
 
   // Fill the form for the new electronic mail
   await newMailPage.fillFromField('eservice@myflcourtaccess.com');
-  await newMailPage.fillToField('engineering.qa@pacerpro.com'); // Correct the email
+  await newMailPage.fillToField('engineering.automation@pacerpro.com'); // Correct the email
   await newMailPage.checkApiCheckbox();
   await newMailPage.selectInboundUrl();
   //await newMailPage.optionInboundUrl();
-  await newMailPage.uploadEmlFile('/Users/macbookpro/Documents/31951049.eml');
+  await newMailPage.uploadEmlFile('eml');
 
   // Submit the form
   await newMailPage.submitForm();

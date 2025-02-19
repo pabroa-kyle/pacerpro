@@ -20,7 +20,7 @@ export class LoginPage {
     }
 
     async gotoLoginPage(): Promise<void> {
-        await this.page.goto('https://pacerpro-qa.herokuapp.com');
+        await this.page.goto('https://pacerpro-qa.herokuapp.com/allcases');
     }
 
     async SignUp(username: string, password: string): Promise<void> {

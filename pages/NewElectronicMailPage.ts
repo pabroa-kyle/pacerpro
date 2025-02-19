@@ -28,6 +28,8 @@ export class NewElectronicMailPage {
     this.inboundUrlOptionLocator = page.locator('role=option[name="QA ENV Heroku"]');
   }
 
+
+
   // Method to fill out "From" field
   async fillFromField(from: string): Promise<void> {
     await this.fromInput.fill(from); // Now it's a Locator, not a string
