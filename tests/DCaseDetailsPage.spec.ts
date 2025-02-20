@@ -20,5 +20,5 @@ test("Verify case link navigation with login", async ({ page }) => {
   // Verify that the case page is now visible
   await expect(page).toHaveURL(/\/\//);
 
-  await page.pause()
+  await page.close()
 });

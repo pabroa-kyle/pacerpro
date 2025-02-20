@@ -17,5 +17,5 @@ test('Check the insecure HTTPS URL (bypass SSL errors)', async () => {
   await page.locator('#user_password').click()
   await page.locator('#user_password').fill('P@ssw0rd1')
   await page.locator('#new_user > div.actions > input').click()
-  await page.pause();
+  await page.close();
 });
