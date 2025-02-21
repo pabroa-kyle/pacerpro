@@ -16,11 +16,10 @@ export class LoginPage {
         this.passwordTextbox = page.locator("input[name='Passwd']")
         this.doThisLaterButton = page.getByRole('link', { name: 'Do this later' });
         this.nextButton = page.getByRole('button', { name: 'NEXT' })
-        //this.myCasesButton = page.locator('[data-test="mycases"]').getByRole('link');
     }
 
     async gotoLoginPage(): Promise<void> {
-        await this.page.goto('https://pacerpro-qa.herokuapp.com/allcases');
+        await this.page.goto('https://pacerpro-qa.herokuapp.com/mycases');
     }
 
     async SignUp(username: string, password: string): Promise<void> {

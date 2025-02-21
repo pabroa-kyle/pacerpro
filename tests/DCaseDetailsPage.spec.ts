@@ -10,15 +10,11 @@ test("Verify case link navigation with login", async ({ page }) => {
   await loginPage.gotoLoginPage();
   await loginPage.SignUp("engineering.automation@pacerpro.com", "QzQqMj123!");  // Replace with valid credentials
 
-  // After login, navigate to the case page
-  //await page.goto("https://pacerpro-qa.herokuapp.com/allcases");
-
-  // Ensure the case link is visible before clicking
-  
   await caseDetailsPage.clickCaseLink();
+  //await page.waitForURL('https://pacerpro-qa.herokuapp.com/cases/4591389');
 
   // Verify that the case page is now visible
-  await expect(page).toHaveURL(/\/\//);
+  await expect(page).toHaveURL('https://pacerpro-qa.herokuapp.com/mycases');
 
   await page.close()
-});
+})

@@ -19,12 +19,12 @@ test('should create a new electronic mail', async ({ page }) => {
   await page.getByRole('link', { name: 'New Electronic Mail' }).click();
 
   // Fill the form for the new electronic mail
-  await newMailPage.fillFromField('eservice@myflcourtaccess.com');
+  await newMailPage.fillFromField('efile@nycourts.gov');
   await newMailPage.fillToField('engineering.automation@pacerpro.com'); // Correct the email
   await newMailPage.checkApiCheckbox();
   await newMailPage.selectInboundUrl();
   //await newMailPage.optionInboundUrl();
-  await newMailPage.uploadEmlFile('eml/31951049.eml');
+  await newMailPage.uploadEmlFile('eml/31924626.eml');
 
   // Submit the form
   await newMailPage.submitForm();

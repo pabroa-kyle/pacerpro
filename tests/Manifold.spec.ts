@@ -1,4 +1,5 @@
 import { test, expect, chromium } from '@playwright/test';
+import { ManifoldLoginPage } from '../pages/Manifold';  // Import the LoginPage
 
 test('Check the insecure HTTPS URL (bypass SSL errors)', async () => {
   // Launch browser with SSL certificate validation disabled
@@ -7,15 +8,20 @@ test('Check the insecure HTTPS URL (bypass SSL errors)', async () => {
   });
   const page = await browser.newPage();
 
-  // Navigate to the HTTPS URL, even if the certificate is invalid
-  await page.goto('https://manifold-test-4.pacerpro.com/', { waitUntil: 'load' });
+  // Create an instance of the LoginPage
+  const loginPage = new ManifoldLoginPage(page);
 
-  // Perform actions after page load (e.g., filling out login form, etc.)
-  // await page.getByRole('textbox', { name: 'Email' }).fill('user@example.com');
-  await page.locator('#user_email').click()
-  await page.locator('#user_email').fill('johnpaulo.delaumbria@codevelopr.com')
-  await page.locator('#user_password').click()
-  await page.locator('#user_password').fill('P@ssw0rd1')
-  await page.locator('#new_user > div.actions > input').click()
+  // Navigate to the page (This will use the goto method of the LoginPage)
+  await loginPage.goto();
+
+  // Fill the login form (This will use the fillLoginForm method)
+  await loginPage.fillLoginForm('johnpaulo.delaumbria@codevelopr.com', 'P@ssw0rd1');
+
+  // Submit the form (This will use the submitLogin method)
+  await loginPage.submitLogin();
+
+  // Optionally, add assertions to verify the login was successful, e.g.:
+  // await expect(page).toHaveURL('expectedURLAfterLogin');
+
   await page.close();
 });
