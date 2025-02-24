@@ -2,6 +2,11 @@ import { Page, Locator } from '@playwright/test';
 
 export class NewElectronicMailPage {
   private page: Page;
+
+  private emailInput: Locator
+  private passwordInput: Locator
+  private loginButton: Locator
+
   private bLocator: Locator;
   private inboundUrlOptionLocator: Locator;
   
@@ -17,6 +22,10 @@ export class NewElectronicMailPage {
   constructor(page: Page) {
     this.page = page;
 
+    // LOGIN
+    this.emailInput = page.getByRole('textbox', { name: 'Email*' });
+    this.passwordInput = page.getByRole('textbox', { name: 'Password*' });
+    this.loginButton = page.getByRole('button', { name: 'Login' });
     // Initialize locators as Locator objects instead of strings
     this.fromInput = page.locator('role=textbox[name="From*"]');
     this.toInput = page.locator('role=textbox[name="To*"]');
@@ -29,41 +38,51 @@ export class NewElectronicMailPage {
   }
 
 
-
-  // Method to fill out "From" field
-  async fillFromField(from: string): Promise<void> {
-    await this.fromInput.fill(from); // Now it's a Locator, not a string
+  // Navigate to login page
+  async gotoLoginPage(): Promise<void> {
+    await this.page.goto('https://immigration-ph.herokuapp.com/admin/login');
   }
 
-  // Method to fill out "To" field
+  // Fill login credentials
+  async fillEmail(email: string): Promise<void> {
+    await this.emailInput.fill(email);
+  }
+
+  async fillPassword(password: string): Promise<void> {
+    await this.passwordInput.fill(password);
+  }
+
+  async submitLogin(): Promise<void> {
+    await this.loginButton.click();
+  }
+
+  // Fill "From" and "To" fields
+  async fillFromField(from: string): Promise<void> {
+    await this.fromInput.fill(from);
+  }
+
   async fillToField(to: string): Promise<void> {
     await this.toInput.fill(to);
   }
 
-  // Method to check the API checkbox
+  // Check API checkbox
   async checkApiCheckbox(): Promise<void> {
     await this.apiCheckbox.check();
   }
 
-  // Method to select the inbound URL from the dropdown
+  // Select the inbound URL from dropdown
   async selectInboundUrl(): Promise<void> {
-    const inboundUrlSelectLocator = this.inboundUrlSelect;
-    await inboundUrlSelectLocator.click({ force: true, timeout: 6000 });
+    await this.inboundUrlSelect.click({ force: true });
     await this.inboundUrlOptionLocator.waitFor({ state: 'visible' });
-    await this.inboundUrlOptionLocator.click({timeout:6000});
+    await this.inboundUrlOptionLocator.click();
   }
 
-  // Method to click the <b> element
-  async clickBoldText(): Promise<void> {
-    await this.bLocator.click();
-  }
-
-  // Method to upload an EML file
+  // Upload an EML file
   async uploadEmlFile(filePath: string): Promise<void> {
     await this.emlInput.setInputFiles(filePath);
   }
 
-  // Method to submit the new electronic mail form
+  // Submit the form
   async submitForm(): Promise<void> {
     await this.submitButton.click();
   }

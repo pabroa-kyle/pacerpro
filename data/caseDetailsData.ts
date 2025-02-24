@@ -1,7 +1,9 @@
 export const caseDetailsData = {
-    login: {
-        email: 'engineering.automation@pacerpro.com',
-        password: 'QzQqMj123!'
+    validUser: {
+        email: "engineering.automation@pacerpro.com",
+        password: "QzQqMj123!"
+    },
+    caseDetails: {
+        caseUrl: "https://pacerpro-qa.herokuapp.com/mycases",
     }
-
-}
+};
